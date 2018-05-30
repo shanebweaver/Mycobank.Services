@@ -1,0 +1,13 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Mycobank.Services.Search.Models
+{
+    public class Results : List<Taxon>, IReadOnlyList<Taxon>
+    {
+
+    }
+}

@@ -106,21 +106,22 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ISearch.cs" />
-    <Compile Include="MBWSearch.cs" />
-    <Compile Include="Models.cs" />
-    <Compile Include="MBWService.cs" />
-    <Compile Include="MycobankLiteratureSearch.cs" />
-    <Compile Include="MycobankLiteratureService.cs" />
-    <Compile Include="MycobankSearch.cs" />
-    <Compile Include="MycobankSpecimensSearch.cs" />
-    <Compile Include="TaxaDescriptionsSearch.cs" />
-    <Compile Include="TaxaDescriptionsService.cs" />
-    <Compile Include="MycobankSpecimensService.cs" />
-    <Compile Include="MycobankService.cs" />
+    <Compile Include="Search\Enums\ComparisonOperator.cs" />
+    <Compile Include="Search\Models\Filter.cs" />
+    <Compile Include="Search\Enums\FilterOperator.cs" />
+    <Compile Include="Search\MBWSearch.cs" />
+    <Compile Include="Search\Models\Link.cs" />
+    <Compile Include="Search\Models\MbwTaxon.cs" />
+    <Compile Include="Search\Models\MycobankTaxon.cs" />
+    <Compile Include="Search\Models\Results.cs" />
+    <Compile Include="Search\Models\TargetRecord.cs" />
+    <Compile Include="Search\Models\Taxon.cs" />
+    <Compile Include="Search\MycobankLiteratureSearch.cs" />
+    <Compile Include="Search\MycobankSearch.cs" />
+    <Compile Include="Search\MycobankSpecimensSearch.cs" />
+    <Compile Include="Search\TaxaDescriptionsSearch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Search.cs" />
-    <Compile Include="Webservice.cs" />
+    <Compile Include="Search\Search.cs" />
     <EmbeddedResource Include="Properties\Mycobank.Services.rd.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -128,6 +129,7 @@
       <Version>6.0.6</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
