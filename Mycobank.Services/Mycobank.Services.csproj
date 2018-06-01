@@ -107,21 +107,32 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Search\Enums\ComparisonOperator.cs" />
+    <Compile Include="Search\Enums\MBWSearchField.cs" />
+    <Compile Include="Search\Models\ChildrenRecord.cs" />
     <Compile Include="Search\Models\Filter.cs" />
     <Compile Include="Search\Enums\FilterOperator.cs" />
     <Compile Include="Search\MBWSearch.cs" />
     <Compile Include="Search\Models\Link.cs" />
     <Compile Include="Search\Models\MbwTaxon.cs" />
+    <Compile Include="Search\Models\MycobankLiteratureTaxon.cs" />
+    <Compile Include="Search\Models\MycobankSpecimensTaxon.cs" />
     <Compile Include="Search\Models\MycobankTaxon.cs" />
+    <Compile Include="Search\Models\Record.cs" />
+    <Compile Include="Search\Models\RecordItem.cs" />
     <Compile Include="Search\Models\Results.cs" />
     <Compile Include="Search\Models\TargetRecord.cs" />
+    <Compile Include="Search\Models\TaxaDescriptionsTaxon.cs" />
     <Compile Include="Search\Models\Taxon.cs" />
     <Compile Include="Search\MycobankLiteratureSearch.cs" />
+    <Compile Include="Search\Enums\MycobankLiteratureSearchField.cs" />
     <Compile Include="Search\MycobankSearch.cs" />
+    <Compile Include="Search\Enums\MycobankSearchField.cs" />
     <Compile Include="Search\MycobankSpecimensSearch.cs" />
+    <Compile Include="Search\Enums\MycobankSpecimensSearchField.cs" />
     <Compile Include="Search\TaxaDescriptionsSearch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Search\Search.cs" />
+    <Compile Include="Search\TaxaDescriptionsSearchField.cs" />
     <EmbeddedResource Include="Properties\Mycobank.Services.rd.xml" />
   </ItemGroup>
   <ItemGroup>

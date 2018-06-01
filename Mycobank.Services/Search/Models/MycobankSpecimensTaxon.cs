@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace Mycobank.Services.Search.Models
 {
-    public class Results<T> : List<T> where T : Taxon
+    public class MycobankSpecimensTaxon : Taxon
     {
-
     }
 }

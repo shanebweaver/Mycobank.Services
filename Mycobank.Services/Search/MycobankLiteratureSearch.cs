@@ -1,60 +1,12 @@
 ﻿using System.Collections.Generic;
 using Mycobank.Services.Search.Enums;
+using Mycobank.Services.Search.Models;
 
 namespace Mycobank.Services.Search
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public enum MycobankLiteratureSearchField
+    public class MycobankLiteratureSearch : Search<MycobankLiteratureSearchField, MycobankLiteratureTaxon>
     {
-        _id,
-        Abstract,
-        Authors,
-        CreationDate,
-        Documenttype,
-        DOI,
-        Edition,
-        Editors,
-        FirstPage,
-        Hyperlink,
-        Hyperlink2,
-        ISBN,
-        Issue,
-        JournalName,
-        Keywords,
-        LastModificationDate,
-        LastModificationUser,
-        LastPage,
-        Name,
-        Publisher,
-        PubMedID,
-        Series,
-        Summary,
-        Title,
-        TitleAbbreviated,
-        User,
-        Volume,
-        Year
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    public static class MycobankLiteratureExtensions
-    {
-        public static string SearchCode(this MycobankLiteratureSearchField searchField)
-        {
-            return MycobankLiteratureSearch.MycobankLiteratureSearchCodes[searchField];
-        }
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    public class MycobankLiteratureSearch : Search<MycobankLiteratureSearchField>
-    {
-        protected override string TableName => "Mycobank literature";
+        public override string TableName => "Mycobank literature";
         protected override string KeyNumber => "14682616000000163";
 
         internal override IReadOnlyDictionary<MycobankLiteratureSearchField, string> SearchCodes => MycobankLiteratureSearchCodes;

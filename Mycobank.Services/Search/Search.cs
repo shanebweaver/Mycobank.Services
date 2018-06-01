@@ -13,11 +13,11 @@ namespace Mycobank.Services.Search
     /// 
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract partial class Search<T>
+    public abstract partial class Search<T, T2> where T2 : Taxon
     {
         private static readonly Uri SERVER_ADDRESS = new Uri("http://www.mycobank.org/Services/Generic/SearchService.svc/rest/xml");
 
-        public static string TableName { get; protected set; }
+        public abstract string TableName { get; }
         protected abstract string KeyNumber { get; }
 
         public int? Limit { get; private set; }
@@ -37,37 +37,37 @@ namespace Mycobank.Services.Search
             AddFilter(FilterOperator.First, searchField, targetTableName, targetFieldCode, comparisonOperator, value);
         }
 
-        internal Search<T> And(T searchField, ComparisonOperator comparisonOperator, string value)
+        internal Search<T, T2> And(T searchField, ComparisonOperator comparisonOperator, string value)
         {
             AddFilter(FilterOperator.And, searchField, comparisonOperator, value);
             return this;
         }
 
-        internal Search<T> And(T searchField, string targetTableName, string targetFieldCode, ComparisonOperator comparisonOperator, string value)
+        internal Search<T, T2> And(T searchField, string targetTableName, string targetFieldCode, ComparisonOperator comparisonOperator, string value)
         {
             AddFilter(FilterOperator.And, searchField, targetTableName, targetFieldCode, comparisonOperator, value);
             return this;
         }
 
-        internal Search<T> Or(T searchField, ComparisonOperator comparisonOperator, string value)
+        internal Search<T, T2> Or(T searchField, ComparisonOperator comparisonOperator, string value)
         {
             AddFilter(FilterOperator.Or, searchField, comparisonOperator, value);
             return this;
         }
 
-        internal Search<T> Or(T searchField, string targetTableName, string targetFieldCode, ComparisonOperator comparisonOperator, string value)
+        internal Search<T, T2> Or(T searchField, string targetTableName, string targetFieldCode, ComparisonOperator comparisonOperator, string value)
         {
             AddFilter(FilterOperator.Or, searchField, targetTableName, targetFieldCode, comparisonOperator, value);
             return this;
         }
 
-        internal Search<T> Not(T searchField, ComparisonOperator comparisonOperator, string value)
+        internal Search<T, T2> Not(T searchField, ComparisonOperator comparisonOperator, string value)
         {
             AddFilter(FilterOperator.Not, searchField, comparisonOperator, value);
             return this;
         }
 
-        internal Search<T> Not(T searchField, string targetTableName, string targetFieldCode, ComparisonOperator comparisonOperator, string value)
+        internal Search<T, T2> Not(T searchField, string targetTableName, string targetFieldCode, ComparisonOperator comparisonOperator, string value)
         {
             AddFilter(FilterOperator.Not, searchField, targetTableName, targetFieldCode, comparisonOperator, value);
             return this;
@@ -83,7 +83,7 @@ namespace Mycobank.Services.Search
             Filters.Add(new Filter(filterOperator, SearchCodes[searchField], targetTableName, targetFieldCode, comparisonOperator, value));
         }
 
-        public async Task<Results> Perform()
+        public async Task<Results<T2>> Perform()
         {
             var requestStringBuilder = new StringBuilder($"?layout={KeyNumber}&filter={ToString()}");
             if (Limit != null)
@@ -93,7 +93,7 @@ namespace Mycobank.Services.Search
 
             var requestUri = new Uri(SERVER_ADDRESS, requestStringBuilder.ToString());
 
-            Results returnValue = null;
+            Results<T2> returnValue = null;
 
             try
             {
@@ -103,10 +103,10 @@ namespace Mycobank.Services.Search
                 httpResponse = await httpClient.GetAsync(requestUri);
                 httpResponse.EnsureSuccessStatusCode();
 
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(Results));
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(Results<T2>));
                 using (var inputStream = await httpResponse.Content.ReadAsInputStreamAsync())
                 {
-                    returnValue = (Results)xmlSerializer.Deserialize(inputStream.AsStreamForRead());
+                    returnValue = (Results<T2>)xmlSerializer.Deserialize(inputStream.AsStreamForRead());
                 }
             }
             catch (Exception ex)

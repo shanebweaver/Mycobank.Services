@@ -1,42 +1,12 @@
 ﻿using System.Collections.Generic;
 using Mycobank.Services.Search.Enums;
+using Mycobank.Services.Search.Models;
 
 namespace Mycobank.Services.Search
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public enum TaxaDescriptionsSearchField
+    public class TaxaDescriptionsSearch : Search<TaxaDescriptionsSearchField, TaxaDescriptionsTaxon>
     {
-        _id,
-        CreationDate,
-        Description,
-        DescriptionType,
-        JournalOrBook,
-        LastModificationDate,
-        LastModificationUser,
-        LiteratureRemarks,
-        Name,
-        PageNumber
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    public static class TaxaDescriptionsSearchExtensions
-    {
-        public static string SearchCode(this TaxaDescriptionsSearchField searchField)
-        {
-            return TaxaDescriptionsSearch.TaxaDescriptionsSearchCodes[searchField];
-        }
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    public class TaxaDescriptionsSearch : Search<TaxaDescriptionsSearchField>
-    {
-        protected override string TableName => "Taxa descriptions";
+        public override string TableName => "Taxa descriptions";
         protected override string KeyNumber => "14682616000000209";
 
         internal override IReadOnlyDictionary<TaxaDescriptionsSearchField, string> SearchCodes => TaxaDescriptionsSearchCodes;

@@ -1,52 +1,12 @@
 ﻿using System.Collections.Generic;
 using Mycobank.Services.Search.Enums;
+using Mycobank.Services.Search.Models;
 
 namespace Mycobank.Services.Search
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public enum MycobankSpecimensSearchField
+    public class MycobankSpecimensSearch : Search<MycobankSpecimensSearchField, MycobankSpecimensTaxon>
     {
-        _id,
-        CollectedBy,
-        CollectionDate,
-        CollectorsNumber,
-        ConditionsForGrowth,
-        ConditionsForSporulation,
-        Host,
-        IdentifiedBy,
-        IsolatedBy,
-        IsolationMethod,
-        JournalOrBook,
-        LastModificationDate,
-        LastModificationUser,
-        LiteratureRemarks,
-        LocationDetails,
-        MycoBankTypificationNumber,
-        Name,
-        Status,
-        StrainNumbers,
-        SubstrateDetails,
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    public static class MycobankSpecimensSearchExtensions
-    {
-        public static string SearchCode(this MycobankSpecimensSearchField searchField)
-        {
-            return MycobankSpecimensSearch.MycobankSpecimensSearchCodes[searchField];
-        }
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    public class MycobankSpecimensSearch : Search<MycobankSpecimensSearchField>
-    {
-        public static override string TableName => "Mycobank specimens";
+        public override string TableName => "Mycobank specimens";
         protected override string KeyNumber => "14682616000000205";
 
         internal override IReadOnlyDictionary<MycobankSpecimensSearchField, string> SearchCodes => MycobankSpecimensSearchCodes;
