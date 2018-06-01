@@ -10,9 +10,6 @@ namespace Mycobank.Services.Search.Models
     [XmlRoot(Namespace = "", IsNullable = false)]
     public partial class MycobankLiteratureTaxon : Taxon
     {
-        [XmlElement("_id")]
-        public byte Id { get; set; }
-
         [XmlElement("creation_date")]
         public string CreationDate { get; set; }
 

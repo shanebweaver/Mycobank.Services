@@ -10,9 +10,6 @@ namespace Mycobank.Services.Search.Models
     [XmlRoot(Namespace = "", IsNullable = false)]
     public partial class MycobankSpecimensTaxon : Taxon
     {
-        [XmlElement("_id")]
-        public byte Id { get; set; }
-
         [XmlElement("last_change_date")]
         public string LastChangeDate { get; set; }
 

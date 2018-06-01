@@ -121,7 +121,7 @@
     <Compile Include="Search\Models\MycobankTaxon.cs" />
     <Compile Include="Search\Models\Record.cs" />
     <Compile Include="Search\Models\RecordItem.cs" />
-    <Compile Include="Search\Models\Results.cs" />
+    <Compile Include="Search\Models\SearchResults.cs" />
     <Compile Include="Search\Models\TargetRecord.cs" />
     <Compile Include="Search\Models\TaxaDescriptionsTaxon.cs" />
     <Compile Include="Search\Models\Taxon.cs" />
