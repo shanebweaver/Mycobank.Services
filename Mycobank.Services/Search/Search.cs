@@ -9,10 +9,6 @@ using System.Xml.Serialization;
 
 namespace Mycobank.Services.Search
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
     public abstract partial class Search<T, T2> where T2 : Taxon
     {
         private static readonly Uri SERVER_ADDRESS = new Uri("http://www.mycobank.org/Services/Generic/SearchService.svc/rest/xml");
