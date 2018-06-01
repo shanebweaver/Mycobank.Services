@@ -108,10 +108,12 @@
   <ItemGroup>
     <Compile Include="Search\Enums\ComparisonOperator.cs" />
     <Compile Include="Search\Enums\MBWSearchField.cs" />
+    <Compile Include="Search\Models\A.cs" />
     <Compile Include="Search\Models\ChildrenRecord.cs" />
     <Compile Include="Search\Models\Filter.cs" />
     <Compile Include="Search\Enums\FilterOperator.cs" />
     <Compile Include="Search\MBWSearch.cs" />
+    <Compile Include="Search\Models\LatitudeLongitude.cs" />
     <Compile Include="Search\Models\Link.cs" />
     <Compile Include="Search\Models\MbwTaxon.cs" />
     <Compile Include="Search\Models\MycobankLiteratureTaxon.cs" />
