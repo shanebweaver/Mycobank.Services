@@ -1,26 +1,14 @@
-﻿using System;
-using System.ComponentModel;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace Mycobank.Services.Search.Models
 {
-    [Serializable()]
-    [DesignerCategory("code")]
-    [XmlType(AnonymousType = true)]
-    [XmlRoot(Namespace = "", IsNullable = false)]
     public partial class MycobankTaxon : Taxon
     {
         [XmlElement("creation_date")]
-        private string _creationDate { get; set; }
-
-        [XmlIgnore]
-        public DateTime CreationDate => DateTime.Parse(_creationDate);
+        public string CreationDate { get; set; }
 
         [XmlElement("last_change_date")]
-        private string _lastChangeDate { get; set; }
-
-        [XmlIgnore]
-        public DateTime LastChangeDate => DateTime.Parse(_lastChangeDate);
+        public string LastChangeDate { get; set; }
 
         [XmlElement("name")]
         public string Name { get; set; }
@@ -29,7 +17,7 @@ namespace Mycobank.Services.Search.Models
         public string E3787 { get; set; }
 
         [XmlElement("e4060")]
-        public object E4060 { get; set; }
+        public string E4060 { get; set; }
 
         [XmlElement("mycobanknr_")]
         public uint MycobankNumber { get; set; }
@@ -38,16 +26,10 @@ namespace Mycobank.Services.Search.Models
         public string Epithet { get; set; }
 
         [XmlElement("rank_pt_")]
-        private RecordItem<TargetRecord> _rank { get; set; }
-
-        [XmlIgnore]
-        public TargetRecord Rank => _rank.Record;
+        public TargetRecordItem Rank { get; set; }
 
         [XmlElement("orthvariantof_pt_")]
-        private RecordItem<TargetRecord> _orthvariantOf { get; set; }
-
-        [XmlIgnore]
-        public TargetRecord OrthvariantOf => _orthvariantOf.Record;
+        public TargetRecord OrthvariantOf { get; set; }
 
         [XmlElement("authors_")]
         public string Authors { get; set; }
@@ -56,22 +38,19 @@ namespace Mycobank.Services.Search.Models
         public string AuthorsAbbreviated { get; set; }
 
         [XmlElement("ethymology_")]
-        public object Ethymology { get; set; }
+        public string Ethymology { get; set; }
 
         [XmlElement("literature_pt_")]
-        private RecordItem<TargetRecord> _literature { get; set; }
-
-        [XmlIgnore]
-        public TargetRecord Literature => _literature.Record;
+        public TargetRecordItem Literature { get; set; }
 
         [XmlElement("literaturepagenr_")]
-        public byte LiteraturePageNumber { get; set; }
+        public string LiteraturePageNumber { get; set; }
 
         [XmlElement("literaturejournalbook_")]
-        public object LiteratureJournalBook { get; set; }
+        public string LiteratureJournalBook { get; set; }
 
         [XmlElement("nameyear_")]
-        public ushort NameYear { get; set; }
+        public string NameYear { get; set; }
 
         [XmlElement("nametype_")]
         public string NameType { get; set; }
@@ -80,37 +59,36 @@ namespace Mycobank.Services.Search.Models
         public string Gender { get; set; }
 
         [XmlElement("datepublic_")]
-        public object DatePublic { get; set; }
+        public string DatePublic { get; set; }
 
         [XmlElement("namestatus_")]
         public string NameStatus { get; set; }
 
         [XmlElement("namestatusexplanation_")]
-        public object NameStatusExplanation { get; set; }
+        public string NameStatusExplanation { get; set; }
 
         [XmlElement("remarks_")]
-        public object Remarks { get; set; }
+        public string Remarks { get; set; }
 
         [XmlElement("sanctioningref_")]
-        public object SanctioningReference { get; set; }
+        public string SanctioningReference { get; set; }
 
         [XmlElement("sanctionedby_")]
         public string SanctionedBy { get; set; }
 
         [XmlElement("sanctioningname_pt_")]
-        public object SanctioningName { get; set; }
+        public TargetRecordItem SanctioningName { get; set; }
 
         [XmlElement("validatedby_pt_")]
-        public object ValidatedBy { get; set; }
+        public TargetRecordItem ValidatedBy { get; set; }
 
-        [XmlElement("specimen_pt_")]
-        private RecordItem<TargetRecord> _specimen { get; set; }
+        [XmlArray("specimen_pt_")]
+        [XmlArrayItem("TargetRecord", IsNullable = false)]
+        public TargetRecord[] Specimen { get; set; }
 
-        [XmlIgnore]
-        public TargetRecord Specimen => _specimen.Record;
-
-        [XmlElement("rlink4703")]
-        public object Rlink4703 { get; set; }
+        [XmlArray("rlink4703")]
+        [XmlArrayItem("TargetRecord", IsNullable = false)]
+        public TargetRecord[] RLink4703 { get; set; }
 
         [XmlElement("humanpathogenicitycode_")]
         public string HumanPathogenicityCode { get; set; }
@@ -122,59 +100,65 @@ namespace Mycobank.Services.Search.Models
         public string CodeToxicity { get; set; }
 
         [XmlElement("currentname_pt_")]
-        private RecordItem<TargetRecord> _currentName { get; set; }
+        private TargetRecordItem CurrentName { get; set; }
 
-        [XmlIgnore]
-        public string CurrentName => _currentName.Record.Name;
-
-        [XmlElement("classification_")]
+        [XmlArray("classification_")]
         [XmlArrayItem("ChildrenRecord", IsNullable = false)]
         public ChildrenRecord[] Classification { get; set; }
 
         [XmlElement("typename_pt_")]
-        public object TypeName { get; set; }
+        public TargetRecordItem TypeName { get; set; }
 
         [XmlElement("basedon_pt_")]
-        public object BasedOn { get; set; }
+        public TargetRecordItem BasedOn { get; set; }
 
-        [XmlElement("obligatesynonyms_pt_")]
-        public object ObligateSynonyms { get; set; }
+        [XmlArray("obligatesynonyms_pt_")]
+        [XmlArrayItem("TargetRecord", IsNullable = false)]
+        public TargetRecord[] ObligateSynonyms { get; set; }
 
-        [XmlElement("anamorph_pt_")]
-        public object Anamorph { get; set; }
+        [XmlArray("anamorph_pt_")]
+        [XmlArrayItem("TargetRecord", IsNullable = false)]
+        public TargetRecord[] Anamorph { get; set; }
 
-        [XmlElement("teleomorph_pt_")]
-        public object Teleomorph { get; set; }
+        [XmlArray("teleomorph_pt_")]
+        [XmlArrayItem("TargetRecord", IsNullable = false)]
+        public TargetRecord[] Teleomorph { get; set; }
 
-        [XmlElement("facultativesynonyms_pt_")]
-        public object FacultativeSynonyms { get; set; }
+        [XmlArray("facultativesynonyms_pt_")]
+        [XmlArrayItem("TargetRecord", IsNullable = false)]
+        public TargetRecord[] FacultativeSynonyms { get; set; }
 
         [XmlElement("v4912")]
-        public object V4912 { get; set; }
+        public string V4912 { get; set; }
 
-        [XmlElement("description_pt_")]
+        [XmlArray("description_pt_")]
         [XmlArrayItem("TargetRecord", IsNullable = false)]
         public TargetRecord[] Description { get; set; }
 
         [XmlElement("protolog_pt_")]
-        public object Protolog { get; set; }
+        public TargetRecordItem Protolog { get; set; }
 
-        [XmlElement("externallinks_")]
+        [XmlArray("externallinks_")]
+        [XmlArrayItem("Link", IsNullable = false)]
         public Link[] ExternalLinks { get; set; }
 
-        [XmlElement("u3732")]
+        [XmlArray("u3732")]
+        [XmlArrayItem("Link", IsNullable = false)]
         public Link[] U3732 { get; set; }
 
-        [XmlElement("u3733")]
+        [XmlArray("u3733")]
+        [XmlArrayItem("Link", IsNullable = false)]
         public Link[] U3733 { get; set; }
 
-        [XmlElement("u3734")]
+        [XmlArray("u3734")]
+        [XmlArrayItem("Link", IsNullable = false)]
         public Link[] U3734 { get; set; }
 
-        [XmlElement("u3735")]
+        [XmlArray("u3735")]
+        [XmlArrayItem("Link", IsNullable = false)]
         public Link[] U3735 { get; set; }
 
         [XmlElement("files_pt_")]
-        public object Files { get; set; }
+        public TargetRecordItem Files { get; set; }
     }
 }

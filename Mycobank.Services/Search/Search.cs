@@ -79,7 +79,7 @@ namespace Mycobank.Services.Search
             Filters.Add(new Filter(filterOperator, SearchCodes[searchField], targetTableName, targetFieldCode, comparisonOperator, value));
         }
 
-        public async Task<SearchResults<T2>> Perform()
+        public async Task<Results<T2>> Perform()
         {
             var requestStringBuilder = new StringBuilder($"?layout={KeyNumber}&filter={ToString()}");
             if (Limit != null)
@@ -89,7 +89,7 @@ namespace Mycobank.Services.Search
 
             var requestUri = new Uri(SERVER_ADDRESS, requestStringBuilder.ToString());
 
-            SearchResults<T2> returnValue = null;
+            Results<T2> returnValue = null;
 
             try
             {
@@ -99,11 +99,13 @@ namespace Mycobank.Services.Search
                 httpResponse = await httpClient.GetAsync(requestUri);
                 httpResponse.EnsureSuccessStatusCode();
 
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(SearchResults<T2>));
-                using (var inputStream = await httpResponse.Content.ReadAsInputStreamAsync())
-                {
-                    returnValue = (SearchResults<T2>)xmlSerializer.Deserialize(inputStream.AsStreamForRead());
-                }
+                var raw = await httpResponse.Content.ReadAsStringAsync();
+                var decoded = System.Net.WebUtility.HtmlDecode(raw)
+                    .Replace("\r\n", string.Empty)
+                    .Replace("&", "&amp;");
+
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(Results<T2>));
+                returnValue = (Results<T2>)xmlSerializer.Deserialize(new StringReader(decoded));
             }
             catch (Exception ex)
             {

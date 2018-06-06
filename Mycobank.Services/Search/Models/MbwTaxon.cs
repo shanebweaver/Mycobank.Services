@@ -1,13 +1,7 @@
-﻿using System;
-using System.ComponentModel;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace Mycobank.Services.Search.Models
 {
-    [Serializable()]
-    [DesignerCategory("code")]
-    [XmlType(AnonymousType = true)]
-    [XmlRoot(Namespace = "", IsNullable = false)]
     public partial class MbwTaxon : Taxon
     {
         [XmlElement("creation_date")]
@@ -26,21 +20,21 @@ namespace Mycobank.Services.Search.Models
         public string Authors { get; set; }
 
         [XmlElement("nameyear_")]
-        public ushort NameYear { get; set; }
+        public string NameYear { get; set; }
 
         [XmlElement("mycobanknr_")]
-        public uint MycobankNumber { get; set; }
+        public string MycobankNumber { get; set; }
 
         [XmlElement("literatureremarks_")]
-        public object LiteratureRemarks { get; set; }
+        public string LiteratureRemarks { get; set; }
 
         [XmlElement("literaturereferencetype_")]
-        public object LiteratureReferenceType { get; set; }
+        public string LiteratureReferenceType { get; set; }
 
         [XmlElement("literaturepagenr_")]
-        public byte LiteraturePageNumber { get; set; }
+        public string LiteraturePageNumber { get; set; }
 
-        [XmlElement("description_pt_")]
+        [XmlArray("description_pt_")]
         [XmlArrayItem("TargetRecord", IsNullable = false)]
         public TargetRecord[] DescriptionParts { get; set; }
 
@@ -50,7 +44,7 @@ namespace Mycobank.Services.Search.Models
         [XmlElement("e3787")]
         public string E3787 { get; set; }
 
-        [XmlElement("u3733")]
+        [XmlArray("u3733")]
         [XmlArrayItem("Link", IsNullable = false)]
         public Link[] E3733 { get; set; }
     }

@@ -64,10 +64,10 @@ namespace Mycobank.Services.Search.Models
         public string LocationDetails { get; set; }
 
         [XmlElement("locality_pt_")]
-        private RecordItem<TargetRecord> _locality { get; set; }
+        private TargetRecordItem _locality { get; set; }
 
         [XmlIgnore]
-        public TargetRecord Locality => _locality.Record;
+        public TargetRecord Locality => _locality.TargetRecord;
 
         [XmlElement("latitude_longitude_")]
         private LatitudeLongitude LatitudeLongitude { get; set; }

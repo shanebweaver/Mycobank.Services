@@ -38,10 +38,10 @@ namespace Mycobank.Services.Search.Models
         public ushort Year { get; set; }
 
         [XmlElement("_journal")]
-        private RecordItem<TargetRecord> _journal { get; set; }
+        private TargetRecordItem _journal { get; set; }
 
         [XmlIgnore]
-        public TargetRecord Journal => _journal.Record;
+        public TargetRecord Journal => _journal.TargetRecord;
 
         [XmlElement("volume_")]
         public uint Volume { get; set; }

@@ -29,7 +29,7 @@ namespace Mycobank.Services.Search.Models
         public object LiteratureRemarks { get; set; }
 
         [XmlElement("literature_pt_")]
-        public RecordItem<TargetRecord> Literature { get; set; }
+        public TargetRecordItem Literature { get; set; }
 
         [XmlElement("literaturereferencetype_")]
         public object LiteratureReferenceType { get; set; }
@@ -53,6 +53,9 @@ namespace Mycobank.Services.Search.Models
         public string Description { get; set; }
 
         [XmlElement("rlink3626")]
-        public RecordItem<TargetRecord> Rlink3626 { get; set; }
+        private TargetRecordItem _rlink3626 { get; set; }
+
+        [XmlIgnore]
+        private TargetRecord Rlink3626 => _rlink3626.TargetRecord;
     }
 }
